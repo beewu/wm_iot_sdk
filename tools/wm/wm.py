@@ -421,6 +421,19 @@ def do_build():
     if res != 0:
         print(Fore.RED + "WM IoT SDK build failed")
         sys.exit(1)
+    else:
+        destination_path = '/www/wwwroot/icloud.isme.fun/bin/'
+        print(f"File copied to {image_path}")
+        if os.path.exists(destination_path):
+            # 在Unix-like系统中使用 'cp' 命令
+            command = ['cp', image_path, destination_path+'cloud.fls'] 
+            # 调用subprocess.call来执行命令
+            return_code = subprocess.call(command)
+            # 检查返回码以确定操作是否成功
+            if return_code == 0:
+                print(f"File copied to {destination_path}")
+            else:
+                print("Error copying file")
     #else:
     #    print(Fore.GREEN + "WM IoT SDK build success")
 
